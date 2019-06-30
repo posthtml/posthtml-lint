@@ -1,0 +1,21 @@
+import { emptyNodeContent } from '../utils/emptyNodeContent';
+
+describe('emptyNodeContent', () => {
+  test('Empty array', () => {
+    expect(emptyNodeContent([])).toEqual(true);
+  });
+
+  test('Line break or empty string', () => {
+    expect(emptyNodeContent([''])).toEqual(true);
+    expect(emptyNodeContent([' '])).toEqual(true);
+    expect(emptyNodeContent(['\n'])).toEqual(true);
+  });
+
+  test('Non-empty string', () => {
+    expect(emptyNodeContent([{ tag: 'div' }])).toEqual(false);
+  });
+
+  test('Object', () => {
+    expect(emptyNodeContent([{ tag: 'div' }])).toEqual(false);
+  });
+});

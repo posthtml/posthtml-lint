@@ -71,28 +71,27 @@ class HtmlLinter {
     const emptyMap: IEmptyMap = {};
 
     this.tree.match({ tag: new RegExp(/\S+/) }, node => {
-      if (node.tag) {
-        const notSelfClosing = !selfClosingTags.includes(node.tag);
+      const { tag, content } = node as INodeTag;
 
-        const isEmpty =
-          node.content === undefined ||
-          (node.content && emptyNodeContent(node.content));
+      const notSelfClosing = !selfClosingTags.includes(tag);
 
-        if (notSelfClosing && isEmpty) {
-          if (Object(emptyMap).hasOwnProperty(node.tag)) {
-            emptyMap[node.tag] = [
-              ...emptyMap[node.tag],
-              {
-                node: node as INode[]
-              }
-            ];
-          } else {
-            emptyMap[node.tag] = [
-              {
-                node: node as INode[]
-              }
-            ];
-          }
+      const isEmpty =
+        content === undefined || (content && emptyNodeContent(content));
+
+      if (notSelfClosing && isEmpty) {
+        if (Object(emptyMap).hasOwnProperty(tag)) {
+          emptyMap[tag] = [
+            ...emptyMap[tag],
+            {
+              node: node as INode[]
+            }
+          ];
+        } else {
+          emptyMap[tag] = [
+            {
+              node: node as INode[]
+            }
+          ];
         }
       }
 
@@ -196,6 +195,10 @@ interface INodeMatchAttrs {
     alt?: string;
     type?: string;
   };
+}
+
+interface INodeTag extends INode {
+  tag: string;
 }
 
 interface IIds {
