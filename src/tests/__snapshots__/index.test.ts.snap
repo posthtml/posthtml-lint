@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`posthtmlLint 'No Duplicate Ids' matches the snapshot 1`] = `
+"
+      <div id=\\"a\\"></div>
+      <div id=\\"a\\"></div>
+    "
+`;
+
+exports[`posthtmlLint 'No Duplicate Tags' matches the snapshot 1`] = `
+"
+      <body></body>
+      <body></body>
+    "
+`;
+
+exports[`posthtmlLint 'No Empty Tags' matches the snapshot 1`] = `
+"
+      <a href=\\"\\"></a>
+      <img>
+      <div><span></span></div>
+    "
+`;
+
+exports[`posthtmlLint 'No Missing Attributes' matches the snapshot 1`] = `
+"
+      <a></a>
+      <img>
+      <input>
+    "
+`;

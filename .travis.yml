@@ -1,0 +1,10 @@
+language: node_js
+
+node_js: stable
+
+cache: yarn
+
+script:
+  - yarn test --coverage
+
+after_success: npx codecov
