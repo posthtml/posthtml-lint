@@ -45,6 +45,15 @@ posthtml()
   .then(result => fs.writeFileSync('./after.html', result.html));
 ```
 
+### Options
+
+| Name                  | Kind                       | Description                                                                   |
+| --------------------- | -------------------------- | ----------------------------------------------------------------------------- |
+| `noDuplicateIds`      | `boolean` (default `true`) | Disallow duplicate ids                                                        |
+| `noDuplicateTags`     | `boolean` (default `true`) | Disallow duplicate occurrences of the `html`, `head`, `title` and `body` tags |
+| `noEmptyTags`         | `boolean` (default `true`) | Disallow empty tags for tags that are not self-closing                        |
+| `noMissingAttributes` | `boolean` (default `true`) | Disallow tags with missing required attributes.                               |
+
 ### Contributing
 
 See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs) and [contribution guide](CONTRIBUTING.md).
