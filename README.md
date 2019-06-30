@@ -12,7 +12,13 @@ Currently supported rules include `no-duplicate-ids`, `no-duplicate-tags`, `no-e
 **Before:**
 
 ```html
-<a href="http://example.com/" target="_blank">Link</a>
+<head>
+  <title>Title</title>
+  <title>Title</title>
+</head>
+<body>
+  <a>Link</a>
+</body>
 ```
 
 **After:**
