@@ -9,6 +9,8 @@
 
 Currently supported rules include `no-duplicate-ids`, `no-duplicate-tags`, `no-empty-tags` and `no-missing-attributes`.
 
+### [Changelog](CHANGELOG.md)
+
 **Before:**
 
 ```html
