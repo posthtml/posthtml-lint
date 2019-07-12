@@ -8,7 +8,7 @@ declare module 'posthtml' {
       href?: string;
       rel?: string;
     };
-    content?: Array<NodeContentItem>;
+    content?: NodeContentItem[];
   }
 
   export type Match = string | RegExp;

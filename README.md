@@ -5,11 +5,11 @@
 [![Build][build]][build-badge]
 [![Coverage][codecov-shield]][codecov]
 
+## [Changelog](CHANGELOG.md)
+
 `posthtml-lint` is a [PostHTML](https://github.com/posthtml/posthtml) plugin to lint static markup.
 
 Currently supported rules include `no-duplicate-ids`, `no-duplicate-tags`, `no-empty-tags` and `no-missing-attributes`.
-
-### [Changelog](CHANGELOG.md)
 
 **Before:**
 
