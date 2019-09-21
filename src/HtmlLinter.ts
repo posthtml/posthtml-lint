@@ -43,10 +43,7 @@ class HtmlLinter {
       return node;
     });
 
-    this.errors.duplicateIds = {
-      ids,
-      idsMap
-    };
+    this.errors.duplicateIds = { ids, idsMap };
   }
 
   protected noDuplicateTags() {
@@ -80,19 +77,11 @@ class HtmlLinter {
         (content && emptyNodeContent(content as PostHTML.ContentMatcher[]));
 
       if (notSelfClosing && isEmpty) {
+        // tslint:disable-next-line: prefer-conditional-expression
         if (Object(emptyMap).hasOwnProperty(tag)) {
-          emptyMap[tag] = [
-            ...emptyMap[tag],
-            {
-              node
-            }
-          ] as any;
+          emptyMap[tag] = [...emptyMap[tag], { node }] as any;
         } else {
-          emptyMap[tag] = [
-            {
-              node
-            }
-          ] as any;
+          emptyMap[tag] = [{ node }] as any;
         }
       }
 
@@ -118,13 +107,7 @@ class HtmlLinter {
       );
 
       if (missing.length > 0) {
-        attrsMap[tag] = [
-          ...attrsMap[tag],
-          {
-            node,
-            missing
-          }
-        ];
+        attrsMap[tag] = [...attrsMap[tag], { node, missing }];
       }
 
       return node;
