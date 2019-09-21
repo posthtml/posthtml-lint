@@ -1,17 +1,17 @@
-import { INode, ITree } from 'posthtml';
+import { PostHTML } from 'posthtml';
 import { selfClosingTags } from './constants';
 import { emptyNodeContent } from './utils/emptyNodeContent';
 
 class HtmlLinter {
-  private tree!: ITree;
+  private tree!: PostHTML.Node;
   private options!: IOptions;
-  private errors: any = {};
+  private errors: any = {}; // TODO: define errors interface
 
   constructor(props: IHtmlLinterProps) {
     this.options = props.options;
   }
 
-  public lint = (tree: ITree) => {
+  public lint = (tree: PostHTML.Node) => {
     this.tree = tree;
 
     Object.keys(this.options).forEach(option => {
@@ -43,10 +43,7 @@ class HtmlLinter {
       return node;
     });
 
-    this.errors.duplicateIds = {
-      ids,
-      idsMap
-    };
+    this.errors.duplicateIds = { ids, idsMap };
   }
 
   protected noDuplicateTags() {
@@ -71,27 +68,20 @@ class HtmlLinter {
     const emptyMap: IEmptyMap = {};
 
     this.tree.match({ tag: new RegExp(/\S+/) }, node => {
-      const { tag, content } = node as INodeTag;
+      const { tag, content } = node;
 
       const notSelfClosing = !selfClosingTags.includes(tag);
 
       const isEmpty =
-        content === undefined || (content && emptyNodeContent(content));
+        content === undefined ||
+        (content && emptyNodeContent(content as PostHTML.ContentMatcher[]));
 
       if (notSelfClosing && isEmpty) {
+        // tslint:disable-next-line: prefer-conditional-expression
         if (Object(emptyMap).hasOwnProperty(tag)) {
-          emptyMap[tag] = [
-            ...emptyMap[tag],
-            {
-              node: node as INode[]
-            }
-          ];
+          emptyMap[tag] = [...emptyMap[tag], { node }] as any;
         } else {
-          emptyMap[tag] = [
-            {
-              node: node as INode[]
-            }
-          ];
+          emptyMap[tag] = [{ node }] as any;
         }
       }
 
@@ -117,13 +107,7 @@ class HtmlLinter {
       );
 
       if (missing.length > 0) {
-        attrsMap[tag] = [
-          ...attrsMap[tag],
-          {
-            node: node as INode[],
-            missing
-          }
-        ];
+        attrsMap[tag] = [...attrsMap[tag], { node, missing }];
       }
 
       return node;
@@ -162,7 +146,7 @@ const requiredAttributesMap: RequiredAttributes = {
 
 type IAttrsNodeMap = {
   [K in Tags]: Array<{
-    node: INode[];
+    node: PostHTML.Node;
     missing: NodeAttributeKey[];
   }>;
 };
@@ -170,7 +154,7 @@ type IAttrsNodeMap = {
 interface IEmptyMap {
   // TODO: define tag type
   [tag: string]: Array<{
-    node: INode[];
+    node: PostHTML.Node[];
   }>;
 }
 
@@ -197,7 +181,7 @@ interface INodeMatchAttrs {
   };
 }
 
-interface INodeTag extends INode {
+interface INodeTag extends PostHTML.Node {
   tag: string;
 }
 
@@ -206,10 +190,10 @@ interface IIds {
 }
 
 interface IIdsNodeMap {
-  [id: string]: INode[];
+  [id: string]: PostHTML.Node[];
 }
 
-interface INodeMatchId extends INode {
+interface INodeMatchId extends PostHTML.Node {
   attrs: {
     id: string;
   };
@@ -224,7 +208,7 @@ interface ITags {
 
 type ExclusiveTag = 'html' | 'head' | 'title' | 'body';
 
-interface INodeMatchDuplicate extends INode {
+interface INodeMatchDuplicate extends PostHTML.Node {
   tag: ExclusiveTag;
 }
 

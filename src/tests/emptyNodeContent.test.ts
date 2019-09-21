@@ -6,8 +6,11 @@ describe('emptyNodeContent', () => {
   });
 
   test('Line break or empty string', () => {
+    // @ts-ignore
     expect(emptyNodeContent([''])).toEqual(true);
+    // @ts-ignore
     expect(emptyNodeContent([' '])).toEqual(true);
+    // @ts-ignore
     expect(emptyNodeContent(['\n'])).toEqual(true);
   });
 

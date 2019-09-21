@@ -8,7 +8,7 @@ describe('posthtmlLint', () => {
       posthtml()
         .use(lint())
         .process(testCase.input)
-        .then((result: { html: string }) => {
+        .then(result => {
           expect(result.html).toMatchSnapshot();
         });
     });
