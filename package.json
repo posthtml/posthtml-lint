@@ -1,6 +1,6 @@
 {
   "name": "posthtml-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "PostHTML plugin to lint static markup",
   "author": "Eric Liu (https://github.com/metonym)",
