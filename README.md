@@ -72,9 +72,9 @@ See [PostHTML Guidelines](https://github.com/posthtml/posthtml/tree/master/docs)
 
 [npm]: https://img.shields.io/npm/v/posthtml-lint.svg?color=blue
 [npm-url]: https://npmjs.com/package/posthtml-lint
-[deps]: https://david-dm.org/metonym/posthtml-lint.svg
-[deps-url]: https://david-dm.org/metonym/posthtml-lint
-[build]: https://travis-ci.com/metonym/posthtml-lint.svg?branch=master
-[build-badge]: https://travis-ci.com/metonym/posthtml-lint
-[codecov]: https://codecov.io/gh/metonym/posthtml-lint
-[codecov-shield]: https://img.shields.io/codecov/c/github/metonym/posthtml-lint.svg
+[deps]: https://david-dm.org/posthtml/posthtml-lint.svg
+[deps-url]: https://david-dm.org/posthtml/posthtml-lint
+[build]: https://travis-ci.com/posthtml/posthtml-lint.svg?branch=master
+[build-badge]: https://travis-ci.com/posthtml/posthtml-lint
+[codecov]: https://codecov.io/gh/posthtml/posthtml-lint
+[codecov-shield]: https://img.shields.io/codecov/c/github/posthtml/posthtml-lint.svg
